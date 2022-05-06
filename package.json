@@ -10,6 +10,7 @@
     "amazon-cognito-identity-js": "^5.2.8",
     "antd": "^4.20.2",
     "antd-img-crop": "^4.2.3",
+    "aws-sdk": "^2.1129.0",
     "axios": "^0.27.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
