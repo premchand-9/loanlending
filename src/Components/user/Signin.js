@@ -1,4 +1,4 @@
-import './Signin.css';
+import './CSSfiles/Signin.css';
  import profile from "../Images/login1.jpg";
  import email from "../Images/login2.jpg";
  import pass from "../Images/login3.jpg";
@@ -21,18 +21,18 @@ function Signin() {
            <h1 style={{fontFamily:"sans-serif"}}>Login</h1>
            <div>
              <img src={email} alt="email" className="email"/>
-             <input type="text" placeholder="user name" className="name"/>
+             <input type="text" placeholder="Username" className="name"/>
            </div>
            <div className="second-input">
              <img src={pass} alt="pass" className="email"/>
-             <input type="password" placeholder="user name" className="name"/>
+             <input type="password" placeholder="Password" className="name"/>
            </div>
           <div className="login-button">
           <button>Login</button>
           </div>
            
             <p className="link">
-              <p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="#">Forgotpassword </a></p><p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="#">SignUp</a></p>
+              <p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="#">Forgotpassword </a></p><p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="./Signup">SignUp</a></p>
             </p>
            
  

@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Loandata } from "./store/slices";
 import { useDispatch } from "react-redux";
 import Signin from "./Components/user/Signin.js";
-import Dashboard from "./Components/user/Dashboard.js";
+import Signup from "./Components/user/Signup.js";
 function App() {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
@@ -15,7 +15,25 @@ function App() {
   }, [dispatch]);
   return (
     <div>
-      <Signin />
+      <Router>
+      <Routes>
+          <Route
+            exact
+            path="/"
+            element={ <Signin />}
+          ></Route>
+         <Route
+            exact
+            path="/Signup"
+            element={ <Signup />}
+          ></Route>
+
+
+
+          </Routes>
+
+          </Router>
+     
     </div>
   );
 }
