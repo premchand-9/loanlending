@@ -6,6 +6,7 @@ import { Loandata } from "./store/slices";
 import { useDispatch } from "react-redux";
 import Signin from "./Components/user/Signin.js";
 import Signup from "./Components/user/Signup.js";
+import Dashboard from "./Components/user/Dashboard";
 function App() {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
@@ -27,8 +28,26 @@ function App() {
             path="/Signup"
             element={ <Signup />}
           ></Route>
-
-
+          <Route
+          exact 
+          path="/User/Dashboard"
+          element={<Dashboard value="dashboard"/>}
+          ></Route>
+          <Route
+            exact
+            path="/User/Profile"
+            element={<Dashboard value="profile" />}
+          ></Route>
+           <Route
+            exact
+            path="/User/Myrequests"
+            element={<Dashboard value="myrequests" />}
+          ></Route>
+           <Route
+            exact
+            path="/User/Allrequests"
+            element={<Dashboard value="allrequests" />}
+          ></Route>
 
           </Routes>
 
