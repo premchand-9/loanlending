@@ -13,10 +13,10 @@ function App() {
     console.log("Method Dispatched");
     dispatch(Loandata());
   }, [dispatch]);
-  return (<div >
-      <Signin/>
-  
-  </div>
+  return (
+    <div>
+      <Signin />
+    </div>
   );
 }
 

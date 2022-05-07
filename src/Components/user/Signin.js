@@ -1,17 +1,14 @@
-import {React} from "react";
+import { React } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-
 
 function Signin() {
   return (
     <div>
-    <MDBContainer>
-      <MDBRow>
-        <MDBCol md="6">
-          <form>
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="6">
             <p className="h5 text-center mb-4">Sign up</p>
             <div className="grey-text">
-             
               <MDBInput
                 label="Your email"
                 icon="envelope"
@@ -21,7 +18,6 @@ function Signin() {
                 error="wrong"
                 success="right"
               />
-             
               <MDBInput
                 label="Your password"
                 icon="lock"
@@ -29,15 +25,16 @@ function Signin() {
                 type="password"
                 validate
               />
+              {/* </div> */}
+              {/* <div className="text-center">*/}
+              <MDBBtn></MDBBtn>
+              {/* <MDBBtn color="primary"></MDBBtn> */}
             </div>
-            <div className="text-center">
-              <MDBBtn color="primary">Signin</MDBBtn>
-            </div>
-          </form>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer></div>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </div>
   );
 }
 
-export default Signin
+export default Signin;
