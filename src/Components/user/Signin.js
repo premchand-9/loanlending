@@ -1,48 +1,39 @@
-import './CSSfiles/Signin.css';
- import profile from "../Images/login1.jpg";
- import email from "../Images/login2.jpg";
- import pass from "../Images/login3.jpg";
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import "./CSSfiles/Signin.css";
 
-function Signin() {
+export default function Signin() {
+
   return (
-    
-    <div className="main">
-     <div className="sub-main">
-       <div>
-         <div className="imgs">
-           <div className="container-image">
-             <img src={profile}  alt="profile" className="profile"/>
+    <div className="Login">
+      <Form >
 
-           </div>
+        <Form.Group size="lg" controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            autoFocus
+            type="email"/>
+        </Form.Group>
 
 
-         </div>
-         <div>
-           <h1 style={{fontFamily:"sans-serif"}}>Login</h1>
-           <div>
-             <img src={email} alt="email" className="email"/>
-             <input type="text" placeholder="Username" className="name"/>
-           </div>
-           <div className="second-input">
-             <img src={pass} alt="pass" className="email"/>
-             <input type="password" placeholder="Password" className="name"/>
-           </div>
-          <div className="login-button">
-          <button>Login</button>
-          </div>
-           
-            <p className="link">
-              <p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="#">Forgotpassword </a></p><p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="./Signup">SignUp</a></p>
-            </p>
-           
- 
-         </div>
-       </div>
-       
+        <Form.Group size="lg" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+         
+          />
+        </Form.Group><br></br>
 
-     </div>
+
+        <Button block size="lg"  style={{width:"320px"}} type="submit">
+          Login
+        </Button>
+       <br></br><br></br>
+       <span><a href="" style={{float:"left",marginLeft:"5%",fontSize:"20px"}}>Forgotpassword</a><a href="/Signup" style={{float:"right",marginRight:"12%",fontSize:"20px"}}>Signup</a></span> 
+      </Form>
+
+
     </div>
   );
 }
-
-export default Signin;
