@@ -27,9 +27,9 @@ export default function Signin() {
         </Form.Group><br></br>
 
 
-        <Button block size="lg"  style={{width:"320px"}} type="submit">
+       <a href="/Dashboard"><Button block size="lg"  style={{width:"320px"}} type="button">
           Login
-        </Button>
+        </Button></a> 
        <br></br><br></br>
        <span><a href="" style={{float:"left",marginLeft:"5%",fontSize:"20px"}}>Forgotpassword</a><a href="/Signup" style={{float:"right",marginRight:"12%",fontSize:"20px"}}>Signup</a></span> 
       </Form>

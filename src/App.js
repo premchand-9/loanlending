@@ -30,10 +30,10 @@ function App() {
           ></Route>
           <Route
           exact 
-          path="/User/Dashboard"
-          element={<Dashboard value="dashboard"/>}
+          path="/Dashboard"
+          element={<Dashboard/>}
           ></Route>
-          <Route
+          {/* <Route
             exact
             path="/User/Profile"
             element={<Dashboard value="profile" />}
@@ -47,7 +47,7 @@ function App() {
             exact
             path="/User/Allrequests"
             element={<Dashboard value="allrequests" />}
-          ></Route>
+          ></Route> */}
 
           </Routes>
 
