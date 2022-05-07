@@ -1,43 +1,48 @@
-import {React} from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-
+import './Signin.css';
+ import profile from "../Images/login1.jpg";
+ import email from "../Images/login2.jpg";
+ import pass from "../Images/login3.jpg";
 
 function Signin() {
   return (
-    <div>
-    <MDBContainer>
-      <MDBRow>
-        <MDBCol md="6">
-          <form>
-            <p className="h5 text-center mb-4">Sign up</p>
-            <div className="grey-text">
-             
-              <MDBInput
-                label="Your email"
-                icon="envelope"
-                group
-                type="email"
-                validate
-                error="wrong"
-                success="right"
-              />
-             
-              <MDBInput
-                label="Your password"
-                icon="lock"
-                group
-                type="password"
-                validate
-              />
-            </div>
-            <div className="text-center">
-              <MDBBtn color="primary">Signin</MDBBtn>
-            </div>
-          </form>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer></div>
+    
+    <div className="main">
+     <div className="sub-main">
+       <div>
+         <div className="imgs">
+           <div className="container-image">
+             <img src={profile}  alt="profile" className="profile"/>
+
+           </div>
+
+
+         </div>
+         <div>
+           <h1 style={{fontFamily:"sans-serif"}}>Login</h1>
+           <div>
+             <img src={email} alt="email" className="email"/>
+             <input type="text" placeholder="user name" className="name"/>
+           </div>
+           <div className="second-input">
+             <img src={pass} alt="pass" className="email"/>
+             <input type="password" placeholder="user name" className="name"/>
+           </div>
+          <div className="login-button">
+          <button>Login</button>
+          </div>
+           
+            <p className="link">
+              <p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="#">Forgotpassword </a></p><p style={{fontFamily:"monospace",fontSize:"20px"}}><a href="#">SignUp</a></p>
+            </p>
+           
+ 
+         </div>
+       </div>
+       
+
+     </div>
+    </div>
   );
 }
 
-export default Signin
+export default Signin;
