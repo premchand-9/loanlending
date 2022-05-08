@@ -72,14 +72,24 @@ export default function Signin() {
         <span>
           <p
             onClick={forgotPassword}
-            style={{ float: "left", marginLeft: "5%", fontSize: "20px" }}
+            style={{
+              float: "left",
+              marginLeft: "5%",
+              fontSize: "20px",
+              cursor: "pointer",
+            }}
           >
             Forgotpassword
           </p>
           &nbsp;
           <p
             onClick={signup}
-            style={{ float: "right", marginRight: "12%", fontSize: "20px" }}
+            style={{
+              float: "right",
+              marginRight: "12%",
+              fontSize: "20px",
+              cursor: "pointer",
+            }}
           >
             Signup
           </p>
