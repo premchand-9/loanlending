@@ -1,16 +1,5 @@
-import React, { useState } from "react";
-import "antd/dist/antd.min.css";
-import { useNavigate } from "react-router-dom";
-import ChangeProf from "./ChangeProf";
-import ImgCrop from "antd-img-crop";
-import { useDispatch, useSelector } from "react-redux";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import ppic from "../Images/dashboardlogo.jpg";
-import "./css/profile.css";
-import generateurlforfile from "../S3/generateurlforfile";
-import { insertrecord } from "../../store/api";
-window.Buffer = window.Buffer || require("buffer").Buffer;
+import React from 'react'
+
 export default function Profile() {
   const [s, set] = useState(true);
   const [name, setname] = useState("");
