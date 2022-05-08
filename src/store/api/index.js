@@ -6,7 +6,7 @@ const data = {
 };
 const headers = {
   "Content-Type": "text/plain",
-  "Access-Control-Allow-Origin":"*"
+  "Access-Control-Allow-Origin": "*",
 };
 export const getprofiledata = async () => {
   console.log(data);
@@ -21,10 +21,6 @@ export const getmodifiedrequest = async () => {
   console.log(data);
 };
 export const insertrecord = async (req) => {
-  let data = await axios.post(
-    baseUrl + "/insertrecord",
-    { data: req },
-    { headers: headers }
-  );
+  let data = await axios.post(baseUrl + "/insertrecord", req, headers);
   return data;
 };
