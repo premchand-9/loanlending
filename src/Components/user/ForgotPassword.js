@@ -28,6 +28,8 @@ export default function ForgotPassword() {
       let data = await ForgetPassword(otp, password);
       if (data === 1) {
         navigate("/");
+      } else {
+        console.log(data);
       }
     }
   };
