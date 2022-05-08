@@ -4,7 +4,7 @@ const baseUrl =
 const data = {
   data: "Data About Loans",
 };
-const headers = { "Content-Type": "application/json " };
+const headers = { "Content-Type": "application/json" };
 export const getprofiledata = async () => {
   console.log(data);
 };
