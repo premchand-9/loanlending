@@ -7,6 +7,7 @@ import Signin from "./Components/user/Signin.js";
 import SignUp from "./Components/user/Signup.js";
 import Dashboard from "./Components/user/Dashboard";
 import ForgotPassword from "./Components/user/ForgotPassword";
+import ChangeProf from "./Components/user/ChangeProf";
 function App() {
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/" element={<Signin />}></Route>
           <Route exact path="/Signup" element={<SignUp />}></Route>
           <Route exact path="/Dashboard" element={<Dashboard />}></Route>
+          <Route exact path="/ChangeProf" element={<ChangeProf/>}></Route>
           <Route
             exact
             path="/forgotpassword"
