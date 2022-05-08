@@ -31,13 +31,10 @@ export default function Profile() {
     event.preventDefault();
     console.log(adhaar,pan,salaryslips,name,bankno,ifsc,ctc)
     const dir = "9000489472";
-    console.log(adhaar,pan,salaryslips) 
-    if(typeof adhaar!=="undefined" && typeof pan!=="undefined" && typeof salaryslips!=="undefined"){
     const adhaarurl = await generateurlforfile(adhaar,dir);
     const panurl = await generateurlforfile(pan,dir);
     const slipurl= await generateurlforfile(salaryslips,dir);
     console.log(adhaar,pan,salaryslips,name,bankno,ifsc,ctc)
-    }
   }
   return (
     <div className="profile">
