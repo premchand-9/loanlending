@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "antd/dist/antd.min.css";
 import { useNavigate } from "react-router-dom";
+import ChangeProf from "./ChangeProf";
 import ImgCrop from "antd-img-crop";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
@@ -19,14 +20,12 @@ export default function Profile() {
   const [adhaar, setadhaar] = useState();
   const [pan, setpan] = useState();
   const [salaryslips, setsalaryslips] = useState();
-
-  const navigate = useNavigate();
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const [updateprofile,setupdateprofile]=useState(false);
+  const pull_data = (data) => {
+    console.log(data);
+    setupdateprofile(false);
+    console.log(updateprofile);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     let maxamount = Math.floor(Math.random() * (700 - 300) + 300);
@@ -46,6 +45,7 @@ export default function Profile() {
       pan: panurl.data.location,
       salaryslips: slipurl.data.location,
       maxloan: maxloan,
+      profile:""
     };
     let res = await insertrecord(req);
     console.log(res);
@@ -63,7 +63,8 @@ export default function Profile() {
             marginLeft: "120px",
           }}
           onClick={() => {
-            console.log("Hi");
+            console.log("hi  m m n ");
+            setupdateprofile(true);
           }}
         ></img>
         <Form.Group size="lg" controlId="name">
@@ -152,6 +153,7 @@ export default function Profile() {
           Submit
         </Button>
       </Form>
+      {updateprofile && <ChangeProf func={pull_data}/>}
     </div>
   );
 }

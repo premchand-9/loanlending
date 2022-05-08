@@ -5,7 +5,7 @@ import { Form,Upload,Modal} from "antd";
 import generateurlforfile from "../S3/generateurlforfile";
 import { updateprofile } from "../../store/api";
 window.Buffer = window.Buffer || require("buffer").Buffer;
-export default function ChangeProf() {
+export default function ChangeProf(propsp) {
     const [s, set] = useState(true);
     const [fileList, setFileList] = useState([]);
     const handleClose = () => {set(false)};
@@ -14,18 +14,24 @@ export default function ChangeProf() {
     }
     const [isModalVisible, setIsModalVisible] = useState(true);
     const handleCancel = () => {
+        propsp.func("false");
         setIsModalVisible(false);
       };
     const onChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
-        console.log(newFileList);
       };
 
     const onSubmit = async (event)=>{
         event.preventDefault();
         const dir = "9000489472";
-        const url = await generateurlforfile(fileList, dir);
-        console.log(url)
+        const url = await generateurlforfile(fileList[0]["originFileObj"], dir);
+        console.log(url.data.location)
+        const req={
+            "userid":"user#9000489472",
+            "profurl":url.data.location
+        }
+        let res = await updateprofile(req)
+        console.log(res)
     }
       const props = {
         beforeUpload: (file) => {
