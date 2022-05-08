@@ -1,16 +1,5 @@
-import React, { useState } from "react";
-import "antd/dist/antd.min.css";
-import { useNavigate } from "react-router-dom";
-import ChangeProf from "./ChangeProf";
-import ImgCrop from "antd-img-crop";
-import { useDispatch, useSelector } from "react-redux";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import ppic from "../Images/dashboardlogo.jpg";
-import "./css/profile.css";
-import generateurlforfile from "../S3/generateurlforfile";
-import { insertrecord } from "../../store/api";
-window.Buffer = window.Buffer || require("buffer").Buffer;
+import React from 'react'
+
 export default function Profile() {
   const [s, set] = useState(true);
   const [name, setname] = useState("");
@@ -20,10 +9,15 @@ export default function Profile() {
   const [adhaar, setadhaar] = useState();
   const [pan, setpan] = useState();
   const [salaryslips, setsalaryslips] = useState();
-  const [updateprofile,setupdateprofile]=useState(false);
+  const [updateprofile, setupdateprofile] = useState(false);
   const pull_data = (data) => {
     setupdateprofile(false);
+<<<<<<< HEAD
   }
+=======
+    console.log(updateprofile);
+  };
+>>>>>>> 9aea9d4ee29cdca436d6bdba40b78de8dcfe44b5
   const handleSubmit = async (event) => {
     event.preventDefault();
     let maxamount = Math.floor(Math.random() * (700 - 300) + 300);
@@ -43,7 +37,7 @@ export default function Profile() {
       pan: panurl.data.location,
       salaryslips: slipurl.data.location,
       maxloan: maxloan,
-      profile:""
+      profile: "",
     };
     let res = await insertrecord(req);
     console.log(res);
@@ -51,19 +45,32 @@ export default function Profile() {
   return (
     <div className="profile">
       <Form onSubmit={handleSubmit}>
-        <img
-          src={ppic}
-          alt="profile pic"
-          style={{
-            width: "100px",
-            height: "100px",
-            borderRadius: "50%",
-            marginLeft: "120px",
-          }}
-          onClick={() => {
-             setupdateprofile(true);
-          }}
-        ></img>
+        <div className="head-text">
+          <div className="head-image">
+            <img
+              src={ppic}
+              alt="profile pic"
+              style={{
+                width: "100px",
+                height: "100px",
+                borderRadius: "50%",
+                marginLeft: "120px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setupdateprofile(true);
+              }}
+            ></img>
+          </div>
+          <div
+            className="text-on-image"
+            onClick={() => {
+              setupdateprofile(true);
+            }}
+          >
+            <h6> Update Profile </h6>
+          </div>
+        </div>
         <Form.Group size="lg" controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -150,7 +157,7 @@ export default function Profile() {
           Submit
         </Button>
       </Form>
-      {updateprofile && <ChangeProf func={pull_data}/>}
+      {updateprofile && <ChangeProf func={pull_data} />}
     </div>
   );
 }
