@@ -4,6 +4,9 @@ const baseUrl =
 const data = {
   data: "Data About Loans",
 };
+const headers = {
+  "Content-Type": "text/plain",
+};
 export const getprofiledata = async () => {
   console.log(data);
 };
@@ -15,4 +18,12 @@ export const getallrequest = async () => {
 };
 export const getmodifiedrequest = async () => {
   console.log(data);
+};
+export const insertrecord = async (req) => {
+  let data = await axios.post(
+    baseUrl + "/insertrecord",
+    { data: req },
+    headers
+  );
+  return data;
 };
