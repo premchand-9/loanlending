@@ -8,7 +8,7 @@ const config = {
 };
 export default function generateurlforfile(data) {
   return new Promise(function (resolve, reject) {
-    S3FileUpload.uploadFile(file, config)
+    S3FileUpload.uploadFile(data, config)
       .then((data) => {
         console.log(data);
         resolve({ status: "success", data: data });
