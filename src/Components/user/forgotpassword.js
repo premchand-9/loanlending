@@ -13,9 +13,7 @@ export default function ForgotPassword() {
   const [a, a1] = useState(true);
   const [showotp, setshowotp] = useState(false);
   const handlecheckuser = async () => {
-    console.log(username);
     let data = await checkuser(username);
-    console.log(data);
     if (data === 1) {
       a1(false);
       setshowotp(true);
