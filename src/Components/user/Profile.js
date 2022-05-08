@@ -7,13 +7,19 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ppic from "../Images/dashboardlogo.jpg";
 import "./css/profile.css";
+import generateurlforfile from "../S3/generateurlforfile";
+window.Buffer = window.Buffer || require("buffer").Buffer;
 export default function Profile() {
-  const [fileList, setFileList] = useState([]);
+  const [fileList, setFileList] = useState();
   const [s, set] = useState(true);
   const [name, setname] = useState("");
   const [bankno, setbankno] = useState("");
   const [ifsc, setifsc] = useState("");
   const [ctc, setctc] = useState("");
+  const [adhaar,setadhaar]=useState();
+  const [pan,setpan]=useState();
+  const [salaryslips,setsalaryslips]=useState();
+
   const navigate = useNavigate();
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -21,18 +27,21 @@ export default function Profile() {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-    console.log(newFileList);
-  };
-  const props = {
-    beforeUpload: (file) => {
-      return false;
-    },
-  };
+  const handleSubmit=async(event)=>{
+    event.preventDefault();
+    console.log(adhaar,pan,salaryslips,name,bankno,ifsc,ctc)
+    const dir = "9000489472";
+    console.log(adhaar,pan,salaryslips) 
+    if(typeof adhaar!=="undefined" && typeof pan!=="undefined" && typeof salaryslips!=="undefined"){
+    const adhaarurl = await generateurlforfile(adhaar,dir);
+    const panurl = await generateurlforfile(pan,dir);
+    const slipurl= await generateurlforfile(salaryslips,dir);
+    console.log(adhaar,pan,salaryslips,name,bankno,ifsc,ctc)
+    }
+  }
   return (
     <div className="profile">
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <img
           src={ppic}
           alt="profile pic"
@@ -47,11 +56,84 @@ export default function Profile() {
             autoFocus
             type="text"
             value={name}
+            required
             onChange={(e) => {
               setname(e.target.value);
             }}
           />
         </Form.Group>
+        <Form.Group size="lg" controlId="bank name">
+          <Form.Label>Bank Number</Form.Label>
+          <Form.Control
+            autoFocus
+            type="text"
+            value={bankno}
+            required
+            onChange={(e) => {
+              setbankno(e.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="ifsc">
+          <Form.Label>IFSC</Form.Label>
+          <Form.Control
+            autoFocus
+            type="text"
+            value={ifsc}
+            required
+            onChange={(e) => {
+              setifsc(e.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="ctc">
+          <Form.Label>CTC</Form.Label>
+          <Form.Control
+            autoFocus
+            type="text"
+            value={ctc}
+            required
+            onChange={(e) => {
+              setctc(e.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="aadhar">
+          <Form.Label>Upload Adhaar</Form.Label>
+          <Form.Control
+            type="file"
+            // value={name}
+            onChange={(e) => {
+              setadhaar(e.target.files[0]);
+            }}
+            required
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="pan">
+          <Form.Label>Upload PAN</Form.Label>
+          <Form.Control
+            type="file"
+            // value={name}
+            onChange={(e) => {
+              setpan(e.target.files[0]);
+            }}    
+            required
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="sslips">
+          <Form.Label>Upload salaryslips</Form.Label>
+          <Form.Control
+            type="file"
+            // value={name}
+            onChange={(e) => {
+              setsalaryslips(e.target.files[0]);
+            }}
+            required
+          />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+    Submit
+  </Button>
       </Form>
     </div>
   );
