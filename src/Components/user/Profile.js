@@ -8,9 +8,9 @@ import Button from "react-bootstrap/Button";
 import ppic from "../Images/dashboardlogo.jpg";
 import "./css/profile.css";
 import generateurlforfile from "../S3/generateurlforfile";
+import { insertrecord } from "../../store/api";
 window.Buffer = window.Buffer || require("buffer").Buffer;
 export default function Profile() {
-  const [fileList, setFileList] = useState();
   const [s, set] = useState(true);
   const [name, setname] = useState("");
   const [bankno, setbankno] = useState("");
@@ -29,12 +29,26 @@ export default function Profile() {
   };
   const handleSubmit=async(event)=>{
     event.preventDefault();
-    console.log(adhaar,pan,salaryslips,name,bankno,ifsc,ctc)
+    let maxamount=Math.floor(Math.random() * (700 - 300) + 300)
     const dir = "9000489472";
+    let maxloan=parseInt(ctc*maxamount/1000);
     const adhaarurl = await generateurlforfile(adhaar,dir);
     const panurl = await generateurlforfile(pan,dir);
     const slipurl= await generateurlforfile(salaryslips,dir);
-    console.log(adhaar,pan,salaryslips,name,bankno,ifsc,ctc)
+    const req={
+      "pk":"profile",
+      "sk":"user#"+dir,
+      "name":name,
+      "bankno":bankno,
+      "ifsc":ifsc,
+      "ctc":ctc,
+      "adhaar":adhaarurl.data.location,
+      "pan":panurl.data.location,
+      "salaryslips":slipurl.data.location,
+      "maxloan":maxloan
+    }
+    let res=await insertrecord(req);
+    console.log(res);
   }
   return (
     <div className="profile">

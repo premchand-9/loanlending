@@ -6,6 +6,7 @@ const data = {
 };
 const headers = {
   "Content-Type": "text/plain",
+  "Access-Control-Allow-Origin":"*"
 };
 export const getprofiledata = async () => {
   console.log(data);
