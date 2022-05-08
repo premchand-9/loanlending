@@ -4,7 +4,9 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.css";
 import "./css/Signin.css";
 import { Signup } from "../cognito/handler";
+import { useNavigate } from "react-router-dom";
 export default function SignUp() {
+  const navigate = useNavigate();
   const validPassword = new RegExp("^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
@@ -12,6 +14,11 @@ export default function SignUp() {
   const [phoneNumber, setphoneNumber] = useState("");
   const [err, seterr] = useState(0);
   const [text, settext] = useState("");
+  const [log, setlog] = useState(false);
+  const redirecttologin = async () => {
+    setlog(false);
+    navigate("/");
+  };
   const handlesignup = async () => {
     if (!validPassword.test(password)) {
       seterr(1);
@@ -29,6 +36,7 @@ export default function SignUp() {
         settext("Invalid phone number");
       } else if (data === 1) {
         console.log("We have sent a Verification link to your email");
+        setlog(true);
         setusername("");
         setpassword("");
         setconfirmPassword("");
@@ -120,7 +128,19 @@ export default function SignUp() {
         >
           Signup
         </Button>
-        <br></br>
+        <br />
+        <br />
+        {log && (
+          <Button
+            block
+            size="lg"
+            style={{ width: "320px" }}
+            type="button"
+            onClick={redirecttologin}
+          >
+            Go to Login
+          </Button>
+        )}
       </Form>
     </div>
   );
