@@ -23,7 +23,7 @@ export const insertrecord = async (req) => {
   let data = await axios.post(
     baseUrl + "/insertrecord",
     { data: req },
-    headers
+    { headers: headers }
   );
   return data;
 };
