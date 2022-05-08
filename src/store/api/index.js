@@ -24,3 +24,7 @@ export const insertrecord = async (req) => {
   let data = await axios.post(baseUrl + "/insertrecord", req, headers);
   return data;
 };
+export const updateprofile = async (req) => {
+  let data = await axios.post(baseUrl + "/updateprofile", req, headers);
+  return data;
+};
