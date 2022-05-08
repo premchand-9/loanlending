@@ -20,12 +20,7 @@ export default function Profile() {
   const [updateprofile, setupdateprofile] = useState(false);
   const pull_data = (data) => {
     setupdateprofile(false);
-<<<<<<< HEAD
-  }
-=======
-    console.log(updateprofile);
   };
->>>>>>> 9aea9d4ee29cdca436d6bdba40b78de8dcfe44b5
   const handleSubmit = async (event) => {
     event.preventDefault();
     let maxamount = Math.floor(Math.random() * (700 - 300) + 300);
