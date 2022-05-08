@@ -4,10 +4,6 @@ const baseUrl =
 const data = {
   data: "Data About Loans",
 };
-const headers = {
-  "Content-Type": "text/plain",
-  "Access-Control-Allow-Origin": "*",
-};
 export const getprofiledata = async () => {
   console.log(data);
 };
@@ -19,12 +15,4 @@ export const getallrequest = async () => {
 };
 export const getmodifiedrequest = async () => {
   console.log(data);
-};
-export const insertrecord = async (req) => {
-  let data = await axios.post(baseUrl + "/insertrecord", req, headers);
-  return data;
-};
-export const updateprofile = async (req) => {
-  let data = await axios.post(baseUrl + "/updateprofile", req, headers);
-  return data;
 };
