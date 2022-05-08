@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import Signin from "./Components/user/Signin.js";
 import SignUp from "./Components/user/Signup.js";
 import Dashboard from "./Components/user/Dashboard";
-import ForgotPassword from "./Components/user/forgotpassword";
+import ForgotPassword from "./Components/user/ForgotPassword";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

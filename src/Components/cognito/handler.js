@@ -83,15 +83,16 @@ export const login = async (username, password) => {
 export const checkuser = async (email) => {
   return new Promise((resolve, reject) => {
     loggedInUser = getuser(email);
+    console.log(loggedInUser);
     axios
       .post(
-        // adminbaseurl() + "/admincheck",
-        { user: email },
+        "https://elskcti2a7.execute-api.us-east-1.amazonaws.com/dev/loanlending/checkuser",
+        { email: email },
         { headers: { "Content-Type": "text/plain" } }
       )
       .then((data) => {
-        console.log(data);
-        if (data.data.Status === "Success") {
+        if (JSON.parse(data.data.body).Status === "Success") {
+          console.log("Hi");
           loggedInUser.forgotPassword({
             onSuccess: (data) => {
               console.log(data);
