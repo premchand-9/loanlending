@@ -8,3 +8,14 @@
     max-width: 320px;
   }
 }
+.head-text {
+  position: relative;
+}
+
+.text-on-image {
+  position: absolute;
+  cursor: pointer;
+  right: 50%;
+  left: 45%;
+  bottom: -2%;
+}

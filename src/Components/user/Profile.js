@@ -20,12 +20,12 @@ export default function Profile() {
   const [adhaar, setadhaar] = useState();
   const [pan, setpan] = useState();
   const [salaryslips, setsalaryslips] = useState();
-  const [updateprofile,setupdateprofile]=useState(false);
+  const [updateprofile, setupdateprofile] = useState(false);
   const pull_data = (data) => {
     console.log(data);
     setupdateprofile(false);
     console.log(updateprofile);
-  }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     let maxamount = Math.floor(Math.random() * (700 - 300) + 300);
@@ -45,7 +45,7 @@ export default function Profile() {
       pan: panurl.data.location,
       salaryslips: slipurl.data.location,
       maxloan: maxloan,
-      profile:""
+      profile: "",
     };
     let res = await insertrecord(req);
     console.log(res);
@@ -53,20 +53,32 @@ export default function Profile() {
   return (
     <div className="profile">
       <Form onSubmit={handleSubmit}>
-        <img
-          src={ppic}
-          alt="profile pic"
-          style={{
-            width: "100px",
-            height: "100px",
-            borderRadius: "50%",
-            marginLeft: "120px",
-          }}
-          onClick={() => {
-            console.log("hi  m m n ");
-            setupdateprofile(true);
-          }}
-        ></img>
+        <div className="head-text">
+          <div className="head-image">
+            <img
+              src={ppic}
+              alt="profile pic"
+              style={{
+                width: "100px",
+                height: "100px",
+                borderRadius: "50%",
+                marginLeft: "120px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setupdateprofile(true);
+              }}
+            ></img>
+          </div>
+          <div
+            className="text-on-image"
+            onClick={() => {
+              setupdateprofile(true);
+            }}
+          >
+            <h6> Update Profile </h6>
+          </div>
+        </div>
         <Form.Group size="lg" controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -153,7 +165,7 @@ export default function Profile() {
           Submit
         </Button>
       </Form>
-      {updateprofile && <ChangeProf func={pull_data}/>}
+      {updateprofile && <ChangeProf func={pull_data} />}
     </div>
   );
 }
