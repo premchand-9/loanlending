@@ -1,18 +1,18 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-import { Loandata } from "./store/slices";
+import { profile } from "./store/slices";
 import { useDispatch } from "react-redux";
 import Signin from "./Components/user/Signin.js";
 import SignUp from "./Components/user/Signup.js";
 import Dashboard from "./Components/user/Dashboard";
 import ForgotPassword from "./Components/user/ForgotPassword";
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    console.log("Method Dispatched");
-    // dispatch(Loandata());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log("Method Dispatched");
+  //   // dispatch(profile());
+  // }, [dispatch]);
   return (
     <div>
       <Router>
