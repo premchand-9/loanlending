@@ -22,9 +22,7 @@ export default function Profile() {
   const [salaryslips, setsalaryslips] = useState();
   const [updateprofile,setupdateprofile]=useState(false);
   const pull_data = (data) => {
-    console.log(data);
     setupdateprofile(false);
-    console.log(updateprofile);
   }
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -63,8 +61,7 @@ export default function Profile() {
             marginLeft: "120px",
           }}
           onClick={() => {
-            console.log("hi  m m n ");
-            setupdateprofile(true);
+             setupdateprofile(true);
           }}
         ></img>
         <Form.Group size="lg" controlId="name">
