@@ -2,39 +2,89 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.css";
-import "./CSSfiles/Signin.css";
-
+import "./css/Signin.css";
+import { login } from "../cognito/handler";
+import { useNavigate } from "react-router-dom";
 export default function Signin() {
-
+  const navigate = useNavigate();
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+  const [err, seterr] = useState(false);
+  const [text, settext] = useState("");
+  const signup = () => {
+    navigate("/signup");
+  };
+  const forgotPassword = () => {
+    navigate("/forgotPassword");
+  };
+  const handlelogin = async () => {
+    let res = await login(username, password);
+    console.log(res);
+    if (res === 1) {
+      navigate("/Dashboard");
+    } else if (res === 2) {
+      settext(
+        "Incorrect credentials.Please check you have verified your email address"
+      );
+    } else {
+    }
+  };
   return (
     <div className="Login">
-      <Form >
-
+      <Form>
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
             autoFocus
-            type="email"/>
+            type="email"
+            value={username}
+            onChange={(e) => {
+              setusername(e.target.value);
+            }}
+          />
         </Form.Group>
-
 
         <Form.Group size="lg" controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-         
+            value={password}
+            onChange={(e) => {
+              setpassword(e.target.value);
+            }}
           />
-        </Form.Group><br></br>
+        </Form.Group>
 
+        <br />
+        <p style={{ color: "red" }}>{text}</p>
 
-       <a href="/Dashboard"><Button block size="lg"  style={{width:"320px"}} type="button">
+        <Button
+          block
+          size="lg"
+          style={{ width: "320px" }}
+          type="button"
+          onClick={handlelogin}
+        >
           Login
-        </Button></a> 
-       <br></br><br></br>
-       <span><a href="" style={{float:"left",marginLeft:"5%",fontSize:"20px"}}>Forgotpassword</a><a href="/Signup" style={{float:"right",marginRight:"12%",fontSize:"20px"}}>Signup</a></span> 
+        </Button>
+        <br></br>
+        <br></br>
+        <span>
+          <p
+            onClick={forgotPassword}
+            style={{ float: "left", marginLeft: "5%", fontSize: "20px" }}
+          >
+            Forgotpassword
+          </p>
+          &nbsp;
+          <p
+            onClick={signup}
+            style={{ float: "right", marginRight: "12%", fontSize: "20px" }}
+          >
+            Signup
+          </p>
+        </span>
       </Form>
-
-
     </div>
   );
 }

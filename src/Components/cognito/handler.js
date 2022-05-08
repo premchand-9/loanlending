@@ -4,7 +4,7 @@ import {
   CognitoUser,
 } from "amazon-cognito-identity-js";
 import axios from "axios";
-var AWS = require("aws-sdk");
+const AWS = require("aws-sdk");
 AWS.config.update({
   region: "ap-south-1",
 });
@@ -14,36 +14,40 @@ const poolData = {
   UserPoolId: poolId,
   ClientId: ClientId,
 };
+var AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 const userPool = new CognitoUserPool(poolData);
 const getuser = (username) => {
   return new CognitoUser({ Username: username, Pool: userPool });
 };
 var loggedInUser = "";
 export const Signup = async (email, phoneNumber, password) => {
-  var attributeList = [];
-  var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute({
-    Name: "email",
-    Value: email,
-  });
-  var attributePhoneNumber = new AmazonCognitoIdentity.CognitoUserAttribute({
-    Name: "phone_number",
-    Value: "+91" + phoneNumber,
-  });
-  attributeList.push(attributeEmail);
-  attributeList.push(attributePhoneNumber);
-  console.log(attributeEmail, attributePhoneNumber);
-  console.log(attributeList);
-  userPool.signUp(phoneNumber, password, attributeList, null, (err, data) => {
-    if (err) {
-      if (err.toString().startsWith("InvalidParameterException")) {
-        console.log("Password Constraint not Satisfied");
-      } else if (err.toString().startsWith("UsernameExistsException")) {
-        console.log("Username Already Exists");
+  return new Promise((resolve, reject) => {
+    var attributeList = [];
+    var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute({
+      Name: "email",
+      Value: email,
+    });
+    var attributePhoneNumber = new AmazonCognitoIdentity.CognitoUserAttribute({
+      Name: "phone_number",
+      Value: "+91" + phoneNumber,
+    });
+    attributeList.push(attributeEmail);
+    attributeList.push(attributePhoneNumber);
+    userPool.signUp(phoneNumber, password, attributeList, null, (err, data) => {
+      if (err) {
+        console.log(err);
+        if (err.toString().startsWith("UsernameExistsException")) {
+          reject("Username Already Exists");
+        } else if (err.toString().startsWith("Invalid phone number format")) {
+          reject("Invalid phone number");
+        }
       }
-    } else {
-    }
-    console.log(err);
-    if (data) console.log(data);
+      if (data) {
+        console.log(data);
+        console.log(1);
+        resolve(1);
+      }
+    });
   });
 };
 export const login = async (username, password) => {
@@ -67,9 +71,7 @@ export const login = async (username, password) => {
         });
       },
       onFailure: (err) => {
-        if (err.toString().substring(7) === "Network error") {
-          resolve(5);
-        }
+        console.error(err);
         resolve(2);
       },
       newPasswordRequired: (data) => {
