@@ -10,8 +10,11 @@ import { insertrecord } from "../../store/api";
 import { profile } from "../../store/slices";
 window.Buffer = window.Buffer || require("buffer").Buffer;
 export default function Profile() {
+  const[x,x1]=useState(false);
+  const status=useSelector((state) => state.loan.status);
   const dispatch = useDispatch();
   const [s, set] = useState(false);
+  const [y,sety]=useState(false);
   useEffect(() => {
     console.log("Hi");
     if (s) dispatch(profile());
@@ -27,9 +30,21 @@ export default function Profile() {
   const [updateprofile, setupdateprofile] = useState(false);
   const profile_data = useSelector((state) => state.loan.profile);
   useEffect(() => {
-    if (typeof profile_data !== "undefined")
-      console.log("profile data", profile_data);
-  }, [dispatch, profile_data]);
+    console.log(Object.keys(profile_data).length,status)
+    if (Object.keys(profile_data).length > 0 &&  status)
+    {
+      x1(false);
+      sety(true);
+    }else if(Object.keys(profile_data).length === 0 &&  status){
+      x1(true);
+      sety(false);
+    }
+    // }else{
+    //   x1(false);
+    //   sety(false);
+    // }
+    console.log(profile_data,status);
+  }, [dispatch, profile_data,status]);
   const pull_data = (data) => {
     setupdateprofile(false);
     set(true);
@@ -61,7 +76,7 @@ export default function Profile() {
   };
   return (
     <div className="profile">
-      <Form onSubmit={handleSubmit}>
+      {status && (<>{x && (<><Form onSubmit={handleSubmit}>
         <div className="head-text">
           <div className="head-image">
             <img
@@ -171,7 +186,9 @@ export default function Profile() {
           Submit
         </Button>
       </Form>
-      {updateprofile && <ChangeProf func={pull_data} />}
+      </>)}
+      {y && <>console.log(no)</>}
+      {updateprofile && <ChangeProf func={pull_data} />} </>)}
     </div>
   );
 }

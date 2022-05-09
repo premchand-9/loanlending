@@ -7,6 +7,7 @@ import {
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const profile = createAsyncThunk("profile", async () => {
   const res = await getprofiledata();
+  console.log(sessionStorage.getItem("username"))
   return res;
 });
 export const myrequests = createAsyncThunk("myrequests", async () => {
@@ -26,6 +27,7 @@ export const modifiedrequests = createAsyncThunk(
 );
 var initialState = {
   profile: {},
+  status:false
 };
 const Loanslice = createSlice({
   name: "Loanslice",
@@ -33,7 +35,12 @@ const Loanslice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(profile.fulfilled, (state, action) => {
-      state.profile = action.payload;
+      if(typeof action.payload!=="undefined"){
+        state.profile = action.payload;
+       
+      }
+      console.log("profile",action.payload);
+      state.status=true;
     });
     builder.addCase(allrequests.fulfilled, (state, action) => {
       console.log(action.payload);
