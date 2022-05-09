@@ -8,12 +8,6 @@ window.Buffer = window.Buffer || require("buffer").Buffer;
 export default function ChangeProf(propsp) {
   const [s, set] = useState(true);
   const [fileList, setFileList] = useState([]);
-  const handleClose = () => {
-    set(false);
-  };
-  const fu = async () => {
-    set(false);
-  };
   const [isModalVisible, setIsModalVisible] = useState(true);
   const handleCancel = () => {
     propsp.func("false");
@@ -25,15 +19,19 @@ export default function ChangeProf(propsp) {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const dir = "9000489472";
+    const dir = sessionStorage.getItem("username");
     const url = await generateurlforfile(fileList[0]["originFileObj"], dir);
     console.log(url.data.location);
     const req = {
-      userid: "user#9000489472",
+      userid: "user#" + sessionStorage.getItem("username"),
       profurl: url.data.location,
     };
     let res = await updateprofile(req);
     console.log(res);
+    if (res.data.status === "success") {
+      propsp.func("false");
+      setIsModalVisible(false);
+    }
   };
   const props = {
     beforeUpload: (file) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChangeProf from "./ChangeProf";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
@@ -7,9 +7,16 @@ import ppic from "../Images/dashboardlogo.jpg";
 import "./css/profile.css";
 import generateurlforfile from "../S3/generateurlforfile";
 import { insertrecord } from "../../store/api";
+import { profile } from "../../store/slices";
 window.Buffer = window.Buffer || require("buffer").Buffer;
 export default function Profile() {
-  const [s, set] = useState(true);
+  const dispatch = useDispatch();
+  const [s, set] = useState(false);
+  useEffect(() => {
+    console.log("Hi");
+    if (s) dispatch(profile());
+    set(false);
+  }, [dispatch, s]);
   const [name, setname] = useState("");
   const [bankno, setbankno] = useState("");
   const [ifsc, setifsc] = useState("");
@@ -20,18 +27,19 @@ export default function Profile() {
   const [updateprofile, setupdateprofile] = useState(false);
   const pull_data = (data) => {
     setupdateprofile(false);
+    set(true);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
     let maxamount = Math.floor(Math.random() * (700 - 300) + 300);
-    const dir = "9000489472";
+    const dir = sessionStorage.getItem("username");
     let maxloan = parseInt((ctc * maxamount) / 1000);
     const adhaarurl = await generateurlforfile(adhaar, dir);
     const panurl = await generateurlforfile(pan, dir);
     const slipurl = await generateurlforfile(salaryslips, dir);
     const req = {
       pk: "profile",
-      sk: "user#" + dir,
+      sk: "user#" + sessionStorage.getItem("username"),
       name: name,
       bankno: bankno,
       ifsc: ifsc,

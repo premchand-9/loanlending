@@ -5,7 +5,22 @@ import Allrequests from "./Allrequests";
 import Profile from "./Profile";
 import Myrequests from "./Myrequests";
 import Applyforloan from "./Applyforloan";
+import {
+  profile,
+  myrequests,
+  allrequests,
+  modifiedrequests,
+} from "../../store/slices";
+import { useDispatch } from "react-redux";
 export default function Dashboard(props) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("Method Dispatched");
+    dispatch(profile());
+    dispatch(myrequests());
+    dispatch(allrequests());
+    dispatch(modifiedrequests());
+  }, [dispatch]);
   const [a, a1] = useState(true);
   const [b, b1] = useState(false);
   const [c, c1] = useState(false);
