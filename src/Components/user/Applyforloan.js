@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./css/applyforloan.css";
+import { insertrecord } from "../../store/api";
 export default function Applyforloan() {
   const [a, a1] = useState(false);
   const [loanamount, setloanamount] = useState("");
@@ -9,16 +10,18 @@ export default function Applyforloan() {
   const [interestrate, setintersetrate] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const date = new Date();
     const d = {
       pk: "loan",
       sk: "userid#9392024242",
-      loanamount: "",
-      interestrate: "",
-      months: "",
-      createdAt: "",
+      loanamount: loanamount,
+      interestrate: interestrate,
+      months: time,
+      createdAt: date.toISOString(),
       status: "pending",
     };
-    console.log(loanamount, time, interestrate);
+    let data = await insertrecord(d);
+    console.log(data);
   };
   return (
     <div className="applyforloan">
