@@ -25,8 +25,8 @@ export default function Profile() {
   const [pan, setpan] = useState();
   const [salaryslips, setsalaryslips] = useState();
   const [updateprofile, setupdateprofile] = useState(false);
-  const profile_data = useSelector((state)=> state.profile)
-  console.log(profile_data)
+  const profile_data = useSelector((state) => state.profile);
+  console.log(profile_data);
   const pull_data = (data) => {
     setupdateprofile(false);
     set(true);
