@@ -21,14 +21,13 @@ export const getmyrequest = async () => {
   // return data;
 };
 export const getallrequest = async () => {
-  console.log(data);
   let data = await axios.post(
     baseUrl + "/fetchloanrequests",
     { pk: "loan", sk: "user#" + sessionStorage.getItem("username") },
     headers
   );
-  console.log("getallrequest", data);
-  return data;
+  console.log(data.data.data["Items"][0]);
+  return data.data.data["Items"][0];
 };
 export const getmodifiedrequest = async () => {
   console.log(data);
