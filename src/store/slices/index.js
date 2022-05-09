@@ -25,7 +25,7 @@ export const modifiedrequests = createAsyncThunk(
   }
 );
 var initialState = {
-  Loan: {},
+  profile: [],
 };
 const Loanslice = createSlice({
   name: "Loanslice",
@@ -33,7 +33,7 @@ const Loanslice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(profile.fulfilled, (state, action) => {
-      state.Loan = action.payload;
+      state.profile = action.payload;
     });
     builder.addCase(allrequests.fulfilled, (state, action) => {
       console.log(action.payload);

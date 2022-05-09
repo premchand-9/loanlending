@@ -3,14 +3,12 @@ const baseUrl =
   "https://elskcti2a7.execute-api.us-east-1.amazonaws.com/dev/loanlending";
 const headers = { "Content-Type": "application/json" };
 export const getprofiledata = async () => {
-  console.log("Get Profile Called");
   let data = await axios.post(
     baseUrl + "/fetchprofile",
     { pk: "profile", sk: "user#" + sessionStorage.getItem("username") },
     headers
   );
-  console.log("Hi", data);
-  return data;
+  return data.data;
 };
 export const getmyrequest = async () => {
   // console.log(data);
