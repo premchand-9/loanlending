@@ -89,7 +89,6 @@ export default function Profile() {
         <Form.Group size="lg" controlId="bank name">
           <Form.Label>Bank Number</Form.Label>
           <Form.Control
-            autoFocus
             type="text"
             value={bankno}
             required
@@ -101,7 +100,6 @@ export default function Profile() {
         <Form.Group size="lg" controlId="ifsc">
           <Form.Label>IFSC</Form.Label>
           <Form.Control
-            autoFocus
             type="text"
             value={ifsc}
             required
@@ -113,7 +111,6 @@ export default function Profile() {
         <Form.Group size="lg" controlId="ctc">
           <Form.Label>CTC</Form.Label>
           <Form.Control
-            autoFocus
             type="text"
             value={ctc}
             required
