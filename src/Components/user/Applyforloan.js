@@ -19,9 +19,16 @@ export default function Applyforloan() {
       months: time,
       createdAt: date.toISOString(),
       status: "pending",
+      totalamounttobepaid:
+        parseInt(loanamount) + (loanamount * time * interestrate) / 100,
     };
     let data = await insertrecord(d);
-    console.log(data);
+    if (data.data.status === "success") {
+      setloanamount("");
+      settime("");
+      setintersetrate();
+    } else {
+    }
   };
   return (
     <div className="applyforloan">
