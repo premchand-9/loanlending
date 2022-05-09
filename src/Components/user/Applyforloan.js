@@ -27,8 +27,9 @@ export default function Applyforloan() {
     if (data.data.status === "success") {
       setloanamount("");
       settime("");
-      setintersetrate();
+      setintersetrate("");
     } else {
+      console.log(data);
     }
   };
   return (
@@ -79,4 +80,3 @@ export default function Applyforloan() {
     </div>
   );
 }
-// {pk:"loan",sk:"userid",loanamount:"",interestrate:"",months:"",createdAt:"",status:"pending"}
