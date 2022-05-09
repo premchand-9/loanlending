@@ -21,6 +21,7 @@ export default function Applyforloan() {
       status: "pending",
       totalamounttobepaid:
         parseInt(loanamount) + (loanamount * time * interestrate) / 100,
+      email: sessionStorage.getItem("email"),
     };
     let data = await insertrecord(d);
     if (data.data.status === "success") {
