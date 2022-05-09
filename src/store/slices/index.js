@@ -25,7 +25,7 @@ export const modifiedrequests = createAsyncThunk(
   }
 );
 var initialState = {
-  profile: [],
+  profile: {},
 };
 const Loanslice = createSlice({
   name: "Loanslice",

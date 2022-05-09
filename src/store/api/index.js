@@ -8,7 +8,7 @@ export const getprofiledata = async () => {
     { pk: "profile", sk: "user#" + sessionStorage.getItem("username") },
     headers
   );
-  return data.data;
+  return data.data.data;
 };
 export const getmyrequest = async () => {
   // console.log(data);
