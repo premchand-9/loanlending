@@ -9,6 +9,15 @@ export default function Applyforloan() {
   const [interestrate, setintersetrate] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const d = {
+      pk: "loan",
+      sk: "userid#9392024242",
+      loanamount: "",
+      interestrate: "",
+      months: "",
+      createdAt: "",
+      status: "pending",
+    };
     console.log(loanamount, time, interestrate);
   };
   return (
@@ -18,7 +27,8 @@ export default function Applyforloan() {
           <Form.Label>Loan Amount</Form.Label>
           <Form.Control
             autoFocus
-            type="text"
+            type="number"
+            min="0"
             value={loanamount}
             required
             onChange={(e) => {
