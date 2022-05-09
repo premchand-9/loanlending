@@ -26,6 +26,7 @@ export const getallrequest = async () => {
     { pk: "loan", sk: "user#" + sessionStorage.getItem("username") },
     headers
   );
+  console.log("getallrequest", data);
   return data;
 };
 export const getmodifiedrequest = async () => {
@@ -35,6 +36,7 @@ export const getmodifiedrequest = async () => {
     { pk: "user#" + sessionStorage.getItem("username") },
     headers
   );
+  console.log("getmodifiedrequets", data);
   return data;
 };
 export const insertrecord = async (req) => {

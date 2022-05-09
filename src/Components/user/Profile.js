@@ -51,6 +51,7 @@ export default function Profile() {
       salaryslips: slipurl.data.location,
       maxloan: maxloan,
       profile: "",
+      gmail: sessionStorage.getItem("email"),
     };
     let res = await insertrecord(req);
     console.log(res);

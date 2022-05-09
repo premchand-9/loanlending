@@ -62,8 +62,8 @@ export const login = async (username, password) => {
       onSuccess: (data) => {
         user.getUserAttributes(function (err, result) {
           if (result) {
-            console.log(result[3]["Value"].slice(3));
             sessionStorage.setItem("username", result[3]["Value"].slice(3));
+            sessionStorage.setItem("email", result[4]["Value"]);
             resolve(1);
           } else {
             console.error(err);
