@@ -40,6 +40,11 @@ function App() {
             path="/profile"
             element={<Dashboard value="profile" />}
           ></Route>
+          <Route
+            exact
+            path="/applyforloan"
+            element={<Dashboard value="applyforloan" />}
+          ></Route>
         </Routes>
       </Router>
     </div>

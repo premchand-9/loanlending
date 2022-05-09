@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Allrequests from "./Allrequests";
 import Profile from "./Profile";
 import Myrequests from "./Myrequests";
+import Applyforloan from "./Applyforloan";
 export default function Dashboard(props) {
   const [a, a1] = useState(true);
   const [b, b1] = useState(false);
@@ -15,17 +16,26 @@ export default function Dashboard(props) {
       a1(false);
       b1(true);
       c1(false);
+      d1(false);
       navigate("/allrequests");
     } else if (props.value === "myrequests") {
       a1(false);
       b1(false);
       c1(true);
+      d1(false);
       navigate("/myrequests");
     } else if (props.value === "profile") {
       a1(true);
       b1(false);
       c1(false);
+      d1(false);
       navigate("/profile");
+    } else if (props.value === "applyforloan") {
+      a1(false);
+      b1(false);
+      c1(false);
+      d1(true);
+      navigate("/applyforloan");
     }
   }, [navigate, props.value]);
   return (
@@ -46,10 +56,22 @@ export default function Dashboard(props) {
             <Nav className="">
               <Nav.Link
                 onClick={() => {
+                  a1(false);
+                  b1(false);
+                  c1(false);
+                  d1(true);
+                  navigate("/applyforloan");
+                }}
+              >
+                <b>ApplyforLoan</b>
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => {
                   navigate("/allrequests");
                   a1(false);
                   b1(true);
                   c1(false);
+                  d1(true);
                 }}
               >
                 <b>Allrequests</b>
@@ -78,6 +100,7 @@ export default function Dashboard(props) {
       {a && <Profile />}
       {c && <Myrequests />}
       {b && <Allrequests />}
+      {d && <Applyforloan />}
     </div>
   );
 }
